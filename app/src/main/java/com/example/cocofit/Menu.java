@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class Menu extends AppCompatActivity implements OnClickListener {
-    private Button btMemoria;
+    private Button btMemoria, btCalculo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,11 @@ public class Menu extends AppCompatActivity implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btMemoria: Intent i = new Intent(this, Memoria.class);
-                startActivity(i); break;
+                startActivity(i);
+                break;
+            case R.id.btCalculo: Intent i2 = new Intent(this, Calculo.class);
+                startActivity(i2);
+                break;
             default:
                 Toast.makeText(this,"Error. Acción desconocida",Toast.LENGTH_LONG).show();
         }
@@ -32,6 +36,9 @@ public class Menu extends AppCompatActivity implements OnClickListener {
 
     public void inicializarVariables() {
         btMemoria = findViewById(R.id.btMemoria);
+        btCalculo = findViewById(R.id.btCalculo);
+
         btMemoria.setOnClickListener(this);
+        btCalculo.setOnClickListener(this);
     }
 }
