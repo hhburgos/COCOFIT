@@ -55,10 +55,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
         if (existeElUsuario(nickname)) {
             Variables.nicnkanme = nickname;
+            estableceDataCalculo(nickname);
             Intent i = new Intent(this, Menu.class);
             startActivity(i);
         } else {
-            if (insertarUsuario(nickname)) {
+            if (insertarUsuario(nickname) && creaDataSecciones(nickname)) {
                 Variables.nicnkanme = nickname;
                 Intent i = new Intent(this, Menu.class);
                 startActivity(i);
@@ -91,20 +92,52 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     public boolean existeElUsuario (String nickname) {
         boolean dev = false;
-        int control = 0;
         try {
             SQLiteDatabase db = adminDB.getWritableDatabase();
-            control = 1;
             Cursor fila = db.rawQuery("select * from " + Constantes.TABLA_USUARIOS +
                     " where " + Constantes.CAMPO_NICKNAME + " like '" + nickname + "' ;", null);
-            control = 2;
             if (fila.moveToFirst()) {
                 dev = true;
             }
-            control = 3;
             db.close();
         } catch (Exception e) {
-            Constantes.alert("petó " + control,this);
+            Constantes.alert("petó ",this);
+        }
+        return dev;
+    }
+
+    public boolean estableceDataCalculo (String nickname) {
+        boolean dev = false;
+        try {
+            SQLiteDatabase db = adminDB.getWritableDatabase();
+            Cursor fila = db.rawQuery("select " + Constantes.CAMPO_NIVEL + ", " + Constantes.CAMPO_CONF + " " +
+                    " from " + Constantes.TABLA_CALCULO + " where " + Constantes.CAMPO_NICKNAME + " like '" + nickname + "' ;", null);
+            if (fila.moveToFirst()) {
+                Variables.nivel_calculo = fila.getInt(0);
+                Variables.conf_calculo = fila.getInt(1);
+                dev = true;
+            }
+        }
+        catch (Exception e) {
+            Constantes.alert("fallo en estableceDataCalculo",this);
+        }
+        return dev;
+    }
+
+    public boolean creaDataSecciones (String nickname) {
+        boolean dev = false;
+        try {
+            SQLiteDatabase db = adminDB.getWritableDatabase();
+            ContentValues registro = new ContentValues();
+            registro.put(Constantes.CAMPO_NICKNAME, nickname);
+            registro.put(Constantes.CAMPO_NIVEL, Constantes.NIVEL_DEFAULT);
+            registro.put(Constantes.CAMPO_CONF, Constantes.CONF_CALCULO_DEFAULT);
+            db.insert(Constantes.TABLA_CALCULO, null, registro);
+            db.close();
+            dev = true;
+        }
+        catch (Exception e) {
+            //poner algo aqui
         }
         return dev;
     }
