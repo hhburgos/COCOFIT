@@ -2,6 +2,7 @@ package com.example.cocofit;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,9 +15,11 @@ import com.example.cocofit.recursos.AtacaBD;
 import com.example.cocofit.recursos.Constantes;
 import com.example.cocofit.recursos.Variables;
 
+import java.util.ArrayList;
+
 public class Calculo extends AppCompatActivity implements OnClickListener {
 
-    private TextView tvOperacion, tvRacha, tvNivel;
+    private TextView tvOperacion, tvRacha, tvNivel, tvControl;
     private EditText etResultado;
     private Button btGenera;
     private AdminSQLiteOpenHelper admin;
@@ -26,6 +29,7 @@ public class Calculo extends AppCompatActivity implements OnClickListener {
 
     public void corrige () {
         if(compruebaResultadoUsuario()) {
+            gestionaSignos();
             Constantes.alert("Bien, correcto",this);
             generateOperation();
         }
@@ -33,37 +37,84 @@ public class Calculo extends AppCompatActivity implements OnClickListener {
             Constantes.alert("mal, era " + result,this);
         }
         etResultado.setText("");
+        test();
         trackeaNivel();
         actualizaDatos();
     }
 
     public void generateOperation () {
         num1 = ((int) (Math.random() * 10 * Variables.nivel_calculo) + (Variables.nivel_calculo * Variables.nivel_calculo));
-        num2 = ((int) (Math.random() * 10 * Variables.nivel_calculo) + (Variables.nivel_calculo * Variables.nivel_calculo));
+        num2 = ((int) (Math.random() * 10 * Variables.nivel_calculo) + (Variables.nivel_calculo));
+        gestionaSignos();
         result = dameResultadoReal();
 
         String operacion = num1 + " " + signo + " " + num2;
         showOperation(operacion);
+
 
         //String resultado = String.valueOf(result);
         //etResultado.setText(resultado);
     }
 
     public void trackeaNivel () {
-        int barrera_next_level = (10 * Variables.nivel_calculo) - (Variables.nivel_calculo * Variables.nivel_calculo);
+        int barrera_next_level = (10 * Variables.nivel_calculo) - (Variables.nivel_calculo );
         if (racha > barrera_next_level) {
             Variables.nivel_calculo += 1;
-            AtacaBD.actualizaDataCalculo(admin,Constantes.TABLA_CALCULO,Constantes.CAMPO_NIVEL,Variables.nivel_calculo);
+            actualizaDataCalculo(admin,Constantes.TABLA_CALCULO,Constantes.CAMPO_NIVEL,Variables.nivel_calculo,Variables.nicnkanme);
+            //Constantes.alert("trackeo completoado",this);
         }
     }
 
-    public void gestionaSignos () {
-        int pos;
-
+    public boolean actualizaDataCalculo(AdminSQLiteOpenHelper admin, String table, String campo, int data, String nick) {
+        boolean dev = false;
+        try{
+            SQLiteDatabase db = admin.getWritableDatabase();
+            db.execSQL("update " + table + " set " + campo + " = " + data + " where " + Constantes.CAMPO_NICKNAME + " = '" + nick + "' ;");
+            db.close();
+            Constantes.alert("actualizado nivel",this);
+        }
+        catch (Exception e) {
+            Constantes.alert("fallo en actualiza nivel",this);
+            e.printStackTrace();
+        }
+        return dev;
     }
 
-    public void actualizaNivelEnBD() {
-        //mediante static en clase constantes puede ser
+    public void test () {
+        etResultado.setText(String.valueOf(result));
+    }
+
+    public void gestionaSignos () {
+        //Constantes.alert();
+
+        switch (Variables.conf_calculo) {
+            case 1: config1(); break;
+            default: break;
+        }
+    }
+
+    public void config1 () {
+        ArrayList<String> posibilidades = new ArrayList<String>();
+        if (Variables.nivel_calculo > 8) {
+            posibilidades.add("-"); posibilidades.add("+"); posibilidades.add("x");
+            signo = dameRandomSigno(posibilidades);
+        }
+        else if (Variables.nivel_calculo > 4) {
+            posibilidades.add("-"); posibilidades.add("+");
+            signo = dameRandomSigno(posibilidades);
+        }
+        else {
+            signo = "x";
+        }
+    }
+
+    public String dameRandomSigno (ArrayList<String> signos) {
+        String dev = "-";
+        int n = signos.size();
+        int random = ((int) (Math.random() * n));
+        tvControl.setText("random:" + random + " n="+n);
+        dev = signos.get(random);
+        return dev;
     }
 
     public int dameResultadoReal () {
@@ -87,6 +138,7 @@ public class Calculo extends AppCompatActivity implements OnClickListener {
 
         return dev;
     }
+
 
     public boolean compruebaResultadoUsuario () {
         boolean dev = false;
@@ -139,13 +191,14 @@ public class Calculo extends AppCompatActivity implements OnClickListener {
 
     public void instancia () {
         admin = new AdminSQLiteOpenHelper(this);
-        signo = "+";
+        signo = "/";
         racha = 0;
         conf = Variables.conf_calculo;
 
         tvOperacion = findViewById(R.id.tvOperacion);
         tvNivel = findViewById(R.id.tvNivel);
         tvRacha = findViewById(R.id.tvRacha);
+        tvControl = findViewById(R.id.tvControl);
         etResultado = findViewById(R.id.etRespuesta);
         btGenera = findViewById(R.id.btnGenera);
 

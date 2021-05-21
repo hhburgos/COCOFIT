@@ -50,17 +50,16 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     }
 
     public void trataNickname () {
-        String nickname = "";
-        nickname = etNickname.getText().toString();
+        Variables.nicnkanme = etNickname.getText().toString();
 
-        if (existeElUsuario(nickname)) {
-            Variables.nicnkanme = nickname;
-            estableceDataCalculo(nickname);
+        if (existeElUsuario(Variables.nicnkanme)) {
+            estableceDataCalculo(Variables.nicnkanme);
             Intent i = new Intent(this, Menu.class);
             startActivity(i);
         } else {
-            if (insertarUsuario(nickname) && creaDataSecciones(nickname)) {
-                Variables.nicnkanme = nickname;
+            if (insertarUsuario(Variables.nicnkanme) && creaDataSecciones(Variables.nicnkanme)) {
+                Variables.nicnkanme = Variables.nicnkanme;
+                Variables.nivel_calculo = Constantes.NIVEL_DEFAULT;
                 Intent i = new Intent(this, Menu.class);
                 startActivity(i);
             }
@@ -111,10 +110,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         try {
             SQLiteDatabase db = adminDB.getWritableDatabase();
             Cursor fila = db.rawQuery("select " + Constantes.CAMPO_NIVEL + ", " + Constantes.CAMPO_CONF + " " +
-                    " from " + Constantes.TABLA_CALCULO + " where " + Constantes.CAMPO_NICKNAME + " like '" + nickname + "' ;", null);
+                    " from " + Constantes.TABLA_CALCULO + " where " + Constantes.CAMPO_NICKNAME + " = '" + nickname + "' ;", null);
             if (fila.moveToFirst()) {
                 Variables.nivel_calculo = fila.getInt(0);
                 Variables.conf_calculo = fila.getInt(1);
+                Constantes.alert("lvl:"+fila.getInt(0) + " nick:"+ nickname,this);
                 dev = true;
             }
         }

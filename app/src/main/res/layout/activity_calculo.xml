@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@drawable/fondo_calculo"
     tools:context=".Calculo">
 
     <androidx.constraintlayout.widget.Guideline
@@ -88,13 +88,14 @@
         android:id="@+id/tvOperacion"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#48DA95"
         android:gravity="center"
-        android:text="TextView"
-        android:textSize="24sp"
+        android:text="48 + 24"
+        android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline15"
-        app:layout_constraintEnd_toStartOf="@+id/guideline13"
-        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline14" />
 
     <EditText
@@ -103,6 +104,7 @@
         android:layout_height="0dp"
         android:ems="10"
         android:gravity="center|center_horizontal"
+        android:hint="Escribe el resultado"
         android:inputType="number"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline17"
@@ -114,7 +116,11 @@
         android:id="@+id/btnGenera"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#008F4C"
         android:text="Aceptar"
+        android:textColor="#CBEFDE"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline18"
         app:layout_constraintEnd_toStartOf="@+id/guideline13"
         app:layout_constraintStart_toStartOf="@+id/guideline12"
@@ -124,8 +130,10 @@
         android:id="@+id/tvNivel"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#008F4C"
         android:text="TextView"
-        android:textSize="14sp"
+        android:textColor="#D6D6D6"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline21"
         app:layout_constraintEnd_toStartOf="@+id/guideline23"
         app:layout_constraintStart_toStartOf="@+id/guideline12"
@@ -135,9 +143,24 @@
         android:id="@+id/tvRacha"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#008F4C"
         android:text="TextView"
+        android:textColor="#D6D6D6"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline21"
         app:layout_constraintEnd_toStartOf="@+id/guideline13"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline23"
-        app:layout_constraintTop_toTopOf="@+id/guideline22" />
+        app:layout_constraintTop_toTopOf="@+id/guideline22"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tvControl"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/guideline19"
+        app:layout_constraintEnd_toStartOf="@+id/guideline13"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toTopOf="@+id/guideline17" />
 </androidx.constraintlayout.widget.ConstraintLayout>
