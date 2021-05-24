@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo_calculo"
-    tools:context=".Calculo">
+    tools:context=".secciones.Calculo">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline12"

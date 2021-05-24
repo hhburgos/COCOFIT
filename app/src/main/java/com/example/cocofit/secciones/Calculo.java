@@ -1,4 +1,4 @@
-package com.example.cocofit;
+package com.example.cocofit.secciones;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
+import com.example.cocofit.AdminSQLiteOpenHelper;
+import com.example.cocofit.R;
 import com.example.cocofit.recursos.AtacaBD;
 import com.example.cocofit.recursos.Constantes;
 import com.example.cocofit.recursos.Variables;
@@ -104,7 +106,7 @@ public class Calculo extends AppCompatActivity implements OnClickListener {
             signo = dameRandomSigno(posibilidades);
         }
         else {
-            signo = "x";
+            signo = "+";
         }
     }
 

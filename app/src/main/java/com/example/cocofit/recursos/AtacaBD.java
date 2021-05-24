@@ -3,7 +3,6 @@ package com.example.cocofit.recursos;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.cocofit.AdminSQLiteOpenHelper;
-import com.example.cocofit.Calculo;
 
 public class AtacaBD {
 

@@ -1,4 +1,4 @@
-package com.example.cocofit;
+package com.example.cocofit.secciones;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
+
+import com.example.cocofit.R;
 
 public class Memoria extends AppCompatActivity implements OnClickListener {
     private AnimationDrawable miAnimacion;

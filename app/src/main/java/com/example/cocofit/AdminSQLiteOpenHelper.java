@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.cocofit.recursos.BDaddCapitales;
 import com.example.cocofit.recursos.Constantes;
 
 public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
@@ -19,12 +20,16 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(Constantes.CREA_TABLA_USUARIOS);
         db.execSQL(Constantes.CREA_TABLA_CALCULO);
+        db.execSQL(Constantes.CREA_TABLA_CAPITALES);
+
+        BDaddCapitales.insertCapitalesEuropa(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS "+ Constantes.TABLA_USUARIOS);
         db.execSQL("DROP TABLE IF EXISTS "+ Constantes.TABLA_CALCULO);
+        db.execSQL("DROP TABLE IF EXISTS "+ Constantes.TABLA_CAPITALES);
 
         onCreate(db);
     }

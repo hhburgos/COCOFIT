@@ -4,4 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".secciones.Memoria"/>
+    tools:context=".secciones.Capitales">
+
+</androidx.constraintlayout.widget.ConstraintLayout>

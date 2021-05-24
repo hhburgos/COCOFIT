@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".Calculo"></activity>
-        <activity android:name=".Memoria" />
+        <activity android:name=".subsecciones.EligeContinentesCapitales"></activity>
+        <activity android:name=".secciones.Capitales" />
+        <activity android:name=".secciones.Calculo" />
+        <activity android:name=".secciones.Memoria" />
         <activity android:name=".Menu" />
         <activity android:name=".MainActivity">
             <intent-filter>

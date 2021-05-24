@@ -4,6 +4,8 @@ public class Variables {
 
     public static String nicnkanme = "";
 
+    public static boolean europa = false;
+
     public static int nivel_calculo = Constantes.NIVEL_DEFAULT ;
     public static int conf_calculo = Constantes.CONF_CALCULO_DEFAULT;
 }
