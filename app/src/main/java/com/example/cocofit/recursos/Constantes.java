@@ -5,6 +5,9 @@ import android.widget.Toast;
 
 public class Constantes {
 
+    //SECCION NOTICIAS
+    public static final String URL_NOTICIAS_FISICA = "https://www.robotitus.com/category/fisica";
+
     //SECCION CAPITALES
     public static final String CONTINENTE_EUROPA = "Europa";
 

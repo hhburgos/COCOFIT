@@ -4,6 +4,9 @@ public class Variables {
 
     public static String nicnkanme = "";
 
+    public static String [] titulares_fisica;
+    public static String [] links_fisica;
+
     public static boolean europa = false;
     public static boolean asia = false;
     public static boolean africa = false;
