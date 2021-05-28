@@ -14,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.cocofit.noticias.MainActivity2;
 import com.example.cocofit.recursos.Constantes;
 import com.example.cocofit.recursos.Variables;
 import com.example.cocofit.scrapy.URLDemo;

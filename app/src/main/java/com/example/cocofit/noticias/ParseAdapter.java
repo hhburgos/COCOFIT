@@ -52,7 +52,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ViewHolder> 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
-            textView = itemView.findViewById(R.id.imageView);
+            textView = itemView.findViewById(R.id.textView);
         }
     }
 }
