@@ -73,44 +73,27 @@ public class MainActivity2 extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-
-
             try {
                 Document doc = Jsoup.connect("https://www.robotitus.com/category/tecnologia").get();
-
-
-//			Elements links = doc.select("a[href]");
                 Elements titulares = doc.select("div[class]");
-//			for (Element link : links) {
-//				System.out.println("Link; "+ link.attr("href"));
-//				System.out.println("Texto: "+ link.text());
-//			}
-
-                System.out.println("---------------------------------\n");
 
                 String clases;
                 String titulo_noticia;
                 Elements links;
-                int cont = 0;
                 for (Element titular : titulares) {
                     clases = titular.attr("class");
                     if (clases.equals("news-post article-post")) {
-                        //if (cont > 8) break;
-                        //cont += 1;
                         links = titular.getAllElements();
-                        titulo_noticia = titular.text();
-                        //String titular1 = dameCadenaPrevia(titulo_noticia,"Victor","\\s+");
-                        //System.out.println("Titular1: " + titular1);
-                        //  tam = titulo_noticia.length();
-                        //titulo_noticia = titulo_noticia.substring(0, (tam/2));
-                        //System.out.println("Titulo: " + titulo_noticia);
+
                         System.out.println("Link; "+ links.attr("href"));
                         String link = links.attr("href");
                         String link2 = link.replace("-", " ");
                         String linkPro = link2.replace("https://www.robotitus.com/", "");
-                        String title = linkPro;
+                        String title = upperCaseFirst(linkPro);
                         String imgUrl = titular.select("img").eq(0).attr("src");
-                        parseItems.add(new ParseItem(imgUrl, title));
+                        String linkNoticiaCompleta = titular.select("a").eq(0).attr("href");
+                        //String detailUrl = getDetails(linkNoticiaCompleta);
+                        parseItems.add(new ParseItem(imgUrl, title, linkNoticiaCompleta));
                         //System.out.println(upperCaseFirst(linkPro));
                     }
                 }
@@ -120,6 +103,40 @@ public class MainActivity2 extends AppCompatActivity {
             }
             return null;
         }
+    }
+
+    public static String getDetails (String url){
+
+        String dev = "";
+
+        try {
+            Document doc = Jsoup.connect(url).get();
+
+            Elements titulares = doc.select("div[class]");
+
+            String clases;
+            String titulo_noticia;
+            int tam;
+            Elements links;
+
+            for (Element titular : titulares) {
+                clases = titular.attr("class");
+                if (clases.equals("entry-content post-content")) {
+                    dev += upperCaseFirst(titular.select("p").text())  + "\n";
+                }
+            }
+        }
+        catch (IOException e) {
+
+        }
+
+        return dev;
+    }
+
+    public static String upperCaseFirst(String val) {
+        char[] arr = val.toCharArray();
+        arr[0] = Character.toUpperCase(arr[0]);
+        return new String(arr);
     }
 
 }
