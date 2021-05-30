@@ -12,6 +12,7 @@ import com.example.cocofit.R;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,25 +48,51 @@ public class Memoria2 extends AppCompatActivity implements OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.boton00: break;
-            case R.id.boton01: break;
-            case R.id.boton02: break;
-            case R.id.boton03: break;
-            case R.id.boton04: break;
-            case R.id.boton05: break;
-            case R.id.boton06: break;
-            case R.id.boton07: break;
-            case R.id.boton08: break;
-            case R.id.boton09: break;
-            case R.id.boton10: break;
-            case R.id.boton11: break;
-            case R.id.boton12: break;
-            case R.id.boton13: break;
-            case R.id.boton14: break;
-            case R.id.boton15: break;
             case R.id.btReiniciar: init(); break;
             case R.id.btSalir: finish(); break;
             default:break;
+        }
+    }
+
+    public void comprobar (int i, final ImageButton imgb) {
+        if (primero == null) {
+            primero = imgb;
+            primero.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            primero.setImageResource(imagenes[arrayDesordenado.get(i)]);
+            primero.setEnabled(false);
+            numero_primero = arrayDesordenado.get(i);
+        } else {
+            bloqueo = true;
+            imgb.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imgb.setImageResource(imagenes[arrayDesordenado.get(i)]);
+            imgb.setEnabled(false);
+            numero_segundo = arrayDesordenado.get(i);
+            if (numero_primero == numero_segundo) {
+                primero = null;
+                bloqueo = false;
+                aciertos ++;
+                puntuacion ++;
+                tvPuntuacion.setText("Puntuación: " + puntuacion);
+                if (aciertos == imagenes.length) {
+                    Toast.makeText(this, "Has ganado", Toast.LENGTH_LONG).show();
+                }
+            } else {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        primero.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                        primero.setImageResource(fondo);
+                        primero.setEnabled(true);
+                        imgb.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                        imgb.setImageResource(fondo);
+                        imgb.setEnabled(true);
+                        bloqueo = false;
+                        primero = null;
+                        puntuacion --;
+                        tvPuntuacion.setText("Puntuación: " + puntuacion);
+                    }
+                }, 1000);
+            }
         }
     }
 
@@ -78,6 +105,30 @@ public class Memoria2 extends AppCompatActivity implements OnClickListener {
         for (int i = 0; i < tablero.length; i++) {
             tablero[i].setScaleType(ImageView.ScaleType.CENTER_CROP);
             tablero[i].setImageResource(imagenes[arrayDesordenado.get(i)]);
+            //tablero[i].setImageResource(fondo);
+        }
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < tablero.length; i++) {
+                    tablero[i].setScaleType(ImageView.ScaleType.CENTER_CROP);
+                    //tablero[i].setImageResource(imagenes[arrayDesordenado.get(i)]);
+                    tablero[i].setImageResource(fondo);
+                }
+            }
+        }, 500);
+
+        for (int i = 0; i < tablero.length; i++) {
+            final int j = i;
+            tablero[i].setEnabled(true);
+            tablero[i].setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!bloqueo) {
+                        comprobar(j,tablero[j]);
+                    }
+                }
+            });
         }
     }
 
@@ -157,7 +208,7 @@ public class Memoria2 extends AppCompatActivity implements OnClickListener {
 
         btReiniciar.setOnClickListener(this);
         btSalir.setOnClickListener(this);
-        
+
     //https://www.youtube.com/watch?v=JsP9MuexS88&list=PL4bT56Uw3S4y_7KT-1E3RFqASzo_RNsVW&index=4
         //13:00
     }
