@@ -92,10 +92,9 @@ public class DetailActivity extends AppCompatActivity {
                         for (int i = 0; i < tam; i++) {
                             detailString.add(upperCaseFirst(titular.select("p").eq(i).text()));
                         }
+
                     }
                 }
-
-
 
             }
             catch (IOException e) {

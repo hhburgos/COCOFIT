@@ -11,21 +11,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".DetailActivity"></activity>
-        <activity android:name=".noticias.MainActivity2">
+        <activity android:name=".secciones.Memoria2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".noticias.MenuNoticias" />
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".noticias.MainActivity2" />
         <activity android:name=".subsecciones.FisicaTitulares" />
         <activity android:name=".subsecciones.EligeContinentesCapitales" />
         <activity android:name=".secciones.Capitales" />
         <activity android:name=".secciones.Calculo" />
         <activity android:name=".secciones.Memoria" />
         <activity android:name=".Menu" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity">
+
+        </activity>
     </application>
 
 </manifest>

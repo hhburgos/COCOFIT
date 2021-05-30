@@ -7,6 +7,11 @@ public class Constantes {
 
     //SECCION NOTICIAS
     public static final String URL_NOTICIAS_FISICA = "https://www.robotitus.com/category/fisica";
+    public static final String URL_NOTICIAS_ESPACIO = "https://www.robotitus.com/category/espacio";
+    public static final String URL_NOTICIAS_NATURALEZA = "https://www.robotitus.com/category/naturaleza";
+    public static final String URL_NOTICIAS_MEDIOAMBIENTE = "https://www.robotitus.com/category/la-tierra";
+    public static final String URL_NOTICIAS_MEDICINA = "https://www.robotitus.com/category/medicina";
+    public static final String URL_NOTICIAS_CURIOSIDADES = "https://www.robotitus.com/category/sapiencias";
 
     //SECCION CAPITALES
     public static final String CONTINENTE_EUROPA = "Europa";

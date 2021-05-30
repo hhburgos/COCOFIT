@@ -6,6 +6,7 @@ public class Variables {
 
     public static String [] titulares_fisica;
     public static String [] links_fisica;
+    public static String LINK_NOTICIAS_ACTIVO = "https://www.robotitus.com/category/sapiencias";
 
     public static boolean europa = false;
     public static boolean asia = false;

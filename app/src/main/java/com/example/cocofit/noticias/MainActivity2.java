@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 
 import com.example.cocofit.R;
 import com.example.cocofit.recursos.Constantes;
+import com.example.cocofit.recursos.Variables;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -74,7 +75,7 @@ public class MainActivity2 extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                Document doc = Jsoup.connect("https://www.robotitus.com/category/tecnologia").get();
+                Document doc = Jsoup.connect(Variables.LINK_NOTICIAS_ACTIVO).get();
                 Elements titulares = doc.select("div[class]");
 
                 String clases;

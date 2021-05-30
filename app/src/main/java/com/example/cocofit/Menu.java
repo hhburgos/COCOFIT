@@ -9,12 +9,13 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.cocofit.noticias.MenuNoticias;
 import com.example.cocofit.secciones.Calculo;
 import com.example.cocofit.secciones.Memoria;
 import com.example.cocofit.subsecciones.EligeContinentesCapitales;
 
 public class Menu extends AppCompatActivity implements OnClickListener {
-    private Button btMemoria, btCalculo, btCapitales;
+    private Button btMemoria, btCalculo, btCapitales, btNoticias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,9 @@ public class Menu extends AppCompatActivity implements OnClickListener {
             case R.id.btCapitales: Intent i3 = new Intent(this, EligeContinentesCapitales.class);
                 startActivity(i3);
                 break;
+            case R.id.btNoticias: Intent i4 = new Intent(this, MenuNoticias.class);
+                startActivity(i4);
+                break;
             default:
                 Toast.makeText(this,"Error. Acción desconocida",Toast.LENGTH_LONG).show();
         }
@@ -45,7 +49,9 @@ public class Menu extends AppCompatActivity implements OnClickListener {
         btMemoria = findViewById(R.id.btMemoria);
         btCalculo = findViewById(R.id.btCalculo);
         btCapitales = findViewById(R.id.btCapitales);
+        btNoticias = findViewById(R.id.btNoticias);
 
+        btNoticias.setOnClickListener(this);
         btMemoria.setOnClickListener(this);
         btCalculo.setOnClickListener(this);
         btCapitales.setOnClickListener(this);
