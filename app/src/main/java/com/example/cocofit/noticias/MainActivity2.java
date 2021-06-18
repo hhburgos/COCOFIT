@@ -47,7 +47,7 @@ public class MainActivity2 extends AppCompatActivity {
         Content content = new Content();
         content.execute();
 
-        Constantes.alert("title: " + mensaje,this);
+        //Constantes.alert("title: " + mensaje,this);
 
     }
 

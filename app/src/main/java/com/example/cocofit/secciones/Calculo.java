@@ -32,11 +32,11 @@ public class Calculo extends AppCompatActivity implements OnClickListener {
     public void corrige () {
         if(compruebaResultadoUsuario()) {
             gestionaSignos();
-            Constantes.alert("Bien, correcto",this);
+            //Constantes.alert("Bien, correcto",this);
             generateOperation();
         }
         else {
-            Constantes.alert("mal, era " + result,this);
+            //Constantes.alert("mal, era " + result,this);
         }
         etResultado.setText("");
         test();
@@ -73,10 +73,10 @@ public class Calculo extends AppCompatActivity implements OnClickListener {
             SQLiteDatabase db = admin.getWritableDatabase();
             db.execSQL("update " + table + " set " + campo + " = " + data + " where " + Constantes.CAMPO_NICKNAME + " = '" + nick + "' ;");
             db.close();
-            Constantes.alert("actualizado nivel",this);
+            //Constantes.alert("actualizado nivel",this);
         }
         catch (Exception e) {
-            Constantes.alert("fallo en actualiza nivel",this);
+            //Constantes.alert("fallo en actualiza nivel",this);
             e.printStackTrace();
         }
         return dev;
@@ -114,7 +114,7 @@ public class Calculo extends AppCompatActivity implements OnClickListener {
         String dev = "-";
         int n = signos.size();
         int random = ((int) (Math.random() * n));
-        tvControl.setText("random:" + random + " n="+n);
+        //tvControl.setText("random:" + random + " n="+n);
         dev = signos.get(random);
         return dev;
     }

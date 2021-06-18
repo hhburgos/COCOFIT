@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.cocofit.noticias.MenuNoticias;
 import com.example.cocofit.secciones.Calculo;
 import com.example.cocofit.secciones.Memoria;
+import com.example.cocofit.secciones.Memoria2;
 import com.example.cocofit.subsecciones.EligeContinentesCapitales;
 
 public class Menu extends AppCompatActivity implements OnClickListener {
@@ -28,7 +29,7 @@ public class Menu extends AppCompatActivity implements OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btMemoria: Intent i = new Intent(this, Memoria.class);
+            case R.id.btMemoria: Intent i = new Intent(this, Memoria2.class);
                 startActivity(i);
                 break;
             case R.id.btCalculo: Intent i2 = new Intent(this, Calculo.class);

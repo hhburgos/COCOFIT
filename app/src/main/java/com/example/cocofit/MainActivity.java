@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 registro.put(Constantes.CAMPO_NICKNAME, nickname);
                 db.insert(Constantes.TABLA_USUARIOS, null, registro);
                 db.close();
-                Constantes.alert("Nuevo usuarios registrado",this);
+                //Constantes.alert("Nuevo usuarios registrado",this);
                 dev = true;
             }
             catch (Exception e) {
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             if (fila.moveToFirst()) {
                 Variables.nivel_calculo = fila.getInt(0);
                 Variables.conf_calculo = fila.getInt(1);
-                Constantes.alert("lvl:"+fila.getInt(0) + " nick:"+ nickname,this);
+                //Constantes.alert("lvl:"+fila.getInt(0) + " nick:"+ nickname,this);
                 dev = true;
             }
         }

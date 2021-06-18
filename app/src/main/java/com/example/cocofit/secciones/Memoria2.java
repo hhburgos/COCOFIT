@@ -23,8 +23,8 @@ public class Memoria2 extends AppCompatActivity implements OnClickListener {
     private ImageButton imb00,imb01,imb02,imb03,imb04,imb05,imb06,imb07,imb08,imb09,imb10,imb11,imb12,imb13,imb14,imb15;
     private ImageButton [] tablero = new ImageButton[16];
     private Button btReiniciar, btSalir;
-    private TextView tvPuntuacion;
-    private int puntuacion, aciertos;
+    private TextView tvPuntuacion, tvFallos;
+    private int puntuacion, aciertos, fallos;
 
     //imagenes
     int [] imagenes;
@@ -72,7 +72,7 @@ public class Memoria2 extends AppCompatActivity implements OnClickListener {
                 bloqueo = false;
                 aciertos ++;
                 puntuacion ++;
-                tvPuntuacion.setText("Puntuación: " + puntuacion);
+                tvPuntuacion.setText(""+aciertos);
                 if (aciertos == imagenes.length) {
                     Toast.makeText(this, "Has ganado", Toast.LENGTH_LONG).show();
                 }
@@ -89,7 +89,8 @@ public class Memoria2 extends AppCompatActivity implements OnClickListener {
                         bloqueo = false;
                         primero = null;
                         puntuacion --;
-                        tvPuntuacion.setText("Puntuación: " + puntuacion);
+                        fallos ++;
+                        tvFallos.setText(""+fallos);
                     }
                 }, 1000);
             }
@@ -163,9 +164,12 @@ public class Memoria2 extends AppCompatActivity implements OnClickListener {
 
     private void cargarTexto () {
         tvPuntuacion = findViewById(R.id.tvPuntuacion);
+        tvFallos = findViewById(R.id.tvFallos);
         puntuacion = 0;
         aciertos = 0;
-        tvPuntuacion.setText("Puntuación");
+        fallos = 0;
+        tvPuntuacion.setText("0");
+        tvFallos.setText("0");
     }
 
     public void cargarTablero () {
